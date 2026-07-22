@@ -1,102 +1,283 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
+"use client";
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
+import { useRouter } from "next/navigation";
 
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
+export default function HomePage() {
+const router = useRouter();
 
-  return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
+return (
+<main
+style={{
+minHeight: "100vh",
+background: "#ffffff",
+color: "#111827",
+}}
+>
+{/* Header */}
+<header
+style={{
+height: "72px",
+padding: "0 40px",
+borderBottom: "1px solid #e5e7eb",
+display: "flex",
+justifyContent: "space-between",
+alignItems: "center",
+background: "#ffffff",
+}}
+>
+<h1
+style={{
+margin: 0,
+fontSize: "24px",
+fontWeight: 800,
+cursor: "pointer",
+}}
+onClick={() => router.push("/")}
+>
+✈️ TripPilot AI </h1>
 
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+```
+    <div
+      style={{
+        display: "flex",
+        gap: "12px",
+      }}
+    >
+      <button
+        onClick={() => router.push("/login")}
+        style={{
+          padding: "10px 18px",
+          border: "1px solid #d1d5db",
+          borderRadius: "8px",
+          background: "#ffffff",
+          cursor: "pointer",
+          fontSize: "14px",
+        }}
+      >
+        로그인
+      </button>
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.dev/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-        <Button appName="web" className={styles.secondary}>
-          Open alert
-        </Button>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://turborepo.dev?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.dev →
-        </a>
-      </footer>
+      <button
+        onClick={() => router.push("/register")}
+        style={{
+          padding: "10px 18px",
+          border: "none",
+          borderRadius: "8px",
+          background: "#111827",
+          color: "#ffffff",
+          cursor: "pointer",
+          fontSize: "14px",
+        }}
+      >
+        회원가입
+      </button>
     </div>
-  );
+  </header>
+
+  {/* Hero */}
+  <section
+    style={{
+      minHeight: "520px",
+      padding: "100px 24px",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      textAlign: "center",
+      background:
+        "linear-gradient(180deg, #f8fafc 0%, #ffffff 100%)",
+    }}
+  >
+    <div
+      style={{
+        marginBottom: "20px",
+        padding: "8px 16px",
+        borderRadius: "999px",
+        background: "#eef2ff",
+        color: "#4f46e5",
+        fontSize: "14px",
+        fontWeight: 600,
+      }}
+    >
+      ✨ AI가 만드는 나만의 여행
+    </div>
+
+    <h2
+      style={{
+        margin: "0 0 20px",
+        fontSize: "clamp(36px, 6vw, 64px)",
+        lineHeight: 1.15,
+        fontWeight: 800,
+      }}
+    >
+      나만의 여행을
+      <br />
+      AI로 계획하세요
+    </h2>
+
+    <p
+      style={{
+        margin: "0 0 36px",
+        color: "#6b7280",
+        fontSize: "20px",
+        lineHeight: 1.6,
+      }}
+    >
+      예산부터 시작하는 스마트 여행
+      <br />
+      당신에게 맞는 여행 일정을 AI가 만들어드립니다.
+    </p>
+
+    <button
+      onClick={() => router.push("/ai")}
+      style={{
+        padding: "16px 32px",
+        border: "none",
+        borderRadius: "12px",
+        background: "#111827",
+        color: "#ffffff",
+        fontSize: "18px",
+        fontWeight: 700,
+        cursor: "pointer",
+        boxShadow: "0 10px 25px rgba(0, 0, 0, 0.12)",
+      }}
+    >
+      ✈️ AI 여행 만들기
+    </button>
+  </section>
+
+  {/* Features */}
+  <section
+    style={{
+      padding: "80px 24px 100px",
+      maxWidth: "1100px",
+      margin: "0 auto",
+    }}
+  >
+    <h2
+      style={{
+        margin: "0 0 12px",
+        textAlign: "center",
+        fontSize: "36px",
+        fontWeight: 800,
+      }}
+    >
+      TripPilot AI 주요 기능
+    </h2>
+
+    <p
+      style={{
+        margin: "0 0 48px",
+        textAlign: "center",
+        color: "#6b7280",
+        fontSize: "16px",
+      }}
+    >
+      여행 계획부터 예약 관리까지 한 곳에서 관리하세요.
+    </p>
+
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns:
+          "repeat(auto-fit, minmax(220px, 1fr))",
+        gap: "20px",
+      }}
+    >
+      <FeatureCard
+        icon="💰"
+        title="예산 기반 여행"
+        description="예산을 먼저 설정하고 그 안에서 최적의 여행 계획을 만들어보세요."
+      />
+
+      <FeatureCard
+        icon="🤖"
+        title="AI 맞춤 일정"
+        description="여행 스타일과 기간에 맞춰 AI가 나만의 일정을 생성합니다."
+      />
+
+      <FeatureCard
+        icon="✈️"
+        title="항공편 검색"
+        description="여행지에 맞는 항공편을 검색하고 여행 일정에 저장할 수 있습니다."
+      />
+
+      <FeatureCard
+        icon="🏨"
+        title="숙소 및 여행 관리"
+        description="생성한 여행 일정과 예약 정보를 한 곳에서 편리하게 관리하세요."
+      />
+    </div>
+  </section>
+
+  {/* Footer */}
+  <footer
+    style={{
+      padding: "24px",
+      borderTop: "1px solid #e5e7eb",
+      textAlign: "center",
+      color: "#9ca3af",
+      fontSize: "14px",
+    }}
+  >
+    © 2026 TripPilot AI. Smart travel starts here.
+  </footer>
+</main>
+```
+
+);
+}
+
+function FeatureCard({
+icon,
+title,
+description,
+}: {
+icon: string;
+title: string;
+description: string;
+}) {
+return (
+<div
+style={{
+padding: "28px 24px",
+border: "1px solid #e5e7eb",
+borderRadius: "16px",
+background: "#ffffff",
+transition: "transform 0.2s ease",
+}}
+>
+<div
+style={{
+marginBottom: "16px",
+fontSize: "36px",
+}}
+>
+{icon} </div>
+
+```
+  <h3
+    style={{
+      margin: "0 0 10px",
+      fontSize: "20px",
+      fontWeight: 700,
+    }}
+  >
+    {title}
+  </h3>
+
+  <p
+    style={{
+      margin: 0,
+      color: "#6b7280",
+      fontSize: "14px",
+      lineHeight: 1.7,
+    }}
+  >
+    {description}
+  </p>
+</div>
+```
+
+);
 }
