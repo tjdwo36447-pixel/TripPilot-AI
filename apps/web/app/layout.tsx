@@ -20,6 +20,7 @@ export const metadata: Metadata = {
       "예산부터 시작하는 스마트 여행. AI가 나만의 여행 일정과 여행 계획을 만들어드립니다.",
     type: "website",
     siteName: "TripPilot AI",
+    google:<meta name="google-site-verification" content="pi8m3n_0V4m9UIGL2OW8a-qAsGXDwou-TQCTny-KNgA" />
   },
 };
 
