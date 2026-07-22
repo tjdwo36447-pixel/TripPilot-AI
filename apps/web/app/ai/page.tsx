@@ -257,6 +257,21 @@ export default function AIPage() {
         </h1>
 
         <button
+  onClick={() => router.push("/trips")}
+  style={{
+    padding: "10px 18px",
+    border: "none",
+    borderRadius: "8px",
+    background: "#4f46e5",
+    color: "#ffffff",
+    cursor: "pointer",
+    fontSize: "14px",
+  }}
+>
+  내 여행
+</button>
+
+        <button
           onClick={
             handleLogout
           }
