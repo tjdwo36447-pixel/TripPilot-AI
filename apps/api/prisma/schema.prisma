@@ -1,0 +1,194 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ======================================
+// User
+// ======================================
+
+model User {
+  id String @id @default(cuid())
+
+  email String @unique
+
+  password String?
+
+  nickname String
+
+  profileImage String?
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+
+  trips Trip[]
+}
+
+// ======================================
+// Trip
+// ======================================
+
+model Trip {
+  id String @id @default(cuid())
+
+  title String
+
+  startDate DateTime
+
+  endDate DateTime
+
+  userId String
+
+  user User @relation(fields: [userId], references: [id])
+
+  schedules Schedule[]
+
+  flights Flight[]
+
+  hotels Hotel[]
+
+  expenses Expense[]
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+}
+
+// ======================================
+// Schedule
+// ======================================
+
+model Schedule {
+  id String @id @default(cuid())
+
+  date DateTime
+
+  place String
+
+  description String
+
+  tripId String
+
+  trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
+}
+
+// ======================================
+// Flight
+// ======================================
+
+model Flight {
+  id String @id @default(cuid())
+
+  airline String
+
+  departure String
+
+  arrival String
+
+  price Int
+
+  provider String?
+
+  externalOfferId String?
+
+  bookingUrl String?
+
+  departureAt DateTime?
+
+  arrivalAt DateTime?
+
+  tripId String
+
+  trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
+
+  affiliateLinks AffiliateLink[]
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+// ======================================
+// Hotel
+// ======================================
+
+model Hotel {
+  id String @id @default(cuid())
+
+  name String
+
+  price Int
+
+  provider String?
+
+  bookingUrl String?
+
+  address String?
+
+  latitude Float?
+
+  longitude Float?
+
+  tripId String
+
+  trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
+
+  affiliateLinks AffiliateLink[]
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+// ======================================
+// AffiliateLink
+// ======================================
+
+model AffiliateLink {
+  id String @id @default(cuid())
+
+  provider String
+
+  type String
+
+  url String
+
+  clicks Int @default(0)
+
+  flightId String?
+
+  flight Flight? @relation(fields: [flightId], references: [id], onDelete: Cascade)
+
+  hotelId String?
+
+  hotel Hotel? @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+}
+
+// ======================================
+// Expense
+// ======================================
+
+model Expense {
+  id String @id @default(cuid())
+
+  category String
+
+  amount Int
+
+  tripId String
+
+  trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @default(now()) @updatedAt
+}
