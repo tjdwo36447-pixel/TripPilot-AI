@@ -34,9 +34,9 @@ cursor: "pointer",
 }}
 onClick={() => router.push("/")}
 >
-✈️ TripPilot AI </h1>
+✈️ TripPilot AI
+</h1>
 
-```
     <div
       style={{
         display: "flex",
@@ -223,7 +223,6 @@ onClick={() => router.push("/")}
     © 2026 TripPilot AI. Smart travel starts here.
   </footer>
 </main>
-```
 
 );
 }
@@ -253,9 +252,9 @@ marginBottom: "16px",
 fontSize: "36px",
 }}
 >
-{icon} </div>
+{icon}
+</div>
 
-```
   <h3
     style={{
       margin: "0 0 10px",
@@ -277,7 +276,6 @@ fontSize: "36px",
     {description}
   </p>
 </div>
-```
 
 );
 }
