@@ -13,10 +13,12 @@ console.log(
   const app = await NestFactory.create(AppModule);
 
   // Next.js 프론트(localhost:3000) 접근 허용
-  app.enableCors({
-    origin: 'http://localhost:3000',
-    credentials: true,
-  });
+app.enableCors({
+  origin:
+    process.env.FRONTEND_URL ||
+    'http://localhost:3000',
+  credentials: true,
+});
 
   await app.listen(process.env.PORT ?? 4000);
 }
