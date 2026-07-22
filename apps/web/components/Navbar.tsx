@@ -4,11 +4,15 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 function decodeJwt(token: string) {
-  const payload = token.split(".")[1];
+  const payload = token.split('.')[1];
 
-  const base64 = payload
-    .replace(/-/g, "+")
-    .replace(/_/g, "/");
+if (!payload) {
+  throw new Error('유효하지 않은 JWT 토큰입니다.');
+}
+
+const base64 = payload
+  .replace(/-/g, '+')
+  .replace(/_/g, '/');
 
   const padded = base64.padEnd(
     base64.length + ((4 - (base64.length % 4)) % 4),
