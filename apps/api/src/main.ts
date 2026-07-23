@@ -14,6 +14,7 @@ async function bootstrap() {
       'http://localhost:3000',
       'https://trip-pilot-ai-web.vercel.app',
       'https://trip-pilot-ai-web-xp2a.vercel.app',
+      'https://trip-pilot-ai-web2-git-main-tjdwo36447-pixels-projects.vercel.app'
     ],
     credentials: true,
   });
